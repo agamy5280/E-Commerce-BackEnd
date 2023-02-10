@@ -29,7 +29,7 @@ class User extends Authenticatable
         'email' => 'required',
         'password' => 'required',
     ];
-    protected $guarded = [];
+    // protected $guarded = [];
     /**
      * The attributes that should be hidden for serialization.
      *

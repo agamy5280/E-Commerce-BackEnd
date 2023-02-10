@@ -13,8 +13,14 @@ use App\Http\Controllers\UsersController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('users/register', [UsersController::class, 'register']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix'=>'user'], function() {
+    Route::post('/register', [UsersController::class, 'register']);
+    Route::post('/login', [UsersController::class, 'login']);
 });
+Route::middleware('auth:sanctum')->prefix('/user')->group(function () {
+    Route::put('/edit', [UsersController::class, 'edit']);
+    Route::post('/refresh', [UsersController::class, 'refresh']);
+});
+
+
+
