@@ -66,12 +66,20 @@ class UsersController extends Controller
     function edit(Request $request) {
         $id = $request->id;
         $user = User::find($id);
+        $allowedFields = ['firstName', 'lastName', 'mobileNum', 'address1', 'address2', 'country', 'state', 'city', 'zipCode'];
         if($user != null) {
-            $user->fill($request->post());
+            foreach ($allowedFields as $field) {
+                if ($request->has($field)) {
+                    $user->$field = $request->$field;
+                }
+            }
+            if($request->password) {
+                $user->password = Hash::make($request->password);
+            }
             $user->save();
-            return Response::json("User has been edited ", 202);
-        }else {
-            return Response::json("User not found!", 404);
+            return response()->json(['message' => 'User has been edited'], 202);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
         }
     }
     function refresh(Request $request){

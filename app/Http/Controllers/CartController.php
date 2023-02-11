@@ -14,9 +14,16 @@ class CartController extends Controller
         try {
             if (User::find($request->user_id) && Products::find($request->product_id)) {
                 $cartItem = new Cart;
-                $cartItem->fill($request->post());
-                $cartItem->save();
-                return response()->json(['message' => 'Cart item added successfully'], 201);
+                $existingCartProduct = Cart::all()->where('user_id', $request->user_id)->where('product_id', $request->product_id)->first();
+                if($existingCartProduct) {
+                    $existingCartProduct->quantity++;
+                    $existingCartProduct->save();
+                    return response()->json(['message' => 'Cart item duplicated, Quantity++'], 201);
+                } else {
+                    $cartItem->fill($request->post());
+                    $cartItem->save();
+                    return response()->json(['message' => 'Cart item added successfully'], 201);
+                }
             } else {
                 return response()->json(['message' => 'User or product not found'], 400);
             }
@@ -36,7 +43,7 @@ class CartController extends Controller
                 }
                 return response()->json([
                     'products' => $products,
-                    'message' => 'Cart have been displayed'
+                    'message' => 'Cart has been displayed'
                 ], 200);
             } else {
                 return response()->json(['message' => 'User not found'], 400);

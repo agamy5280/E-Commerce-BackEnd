@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WishlistController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,8 +35,13 @@ Route::middleware('auth:sanctum')->prefix('/cart')->group(function () {
     Route::put('edit/{id}/product', [CartController::class, 'editCartItems'])->name('product')->where('q', '[A-Za-z0-9]+');
     Route::delete('delete/{id}/product', [CartController::class, 'deleteCartItem'])->name('product')->where('q', '[0-9]+');
 });
+Route::middleware('auth:sanctum')->prefix('/wishlist')->group(function () {
+    Route::post('add', [WishlistController::class, 'addProductToWishlist']);
+    Route::get('display/{id}', [WishlistController::class, 'displayWishlistItems']);
+    Route::delete('delete/{id}/product', [WishlistController::class, 'deleteWishlistItem'])->name('product')->where('q', '[0-9]+');
+});
 Route::middleware('auth:sanctum')->prefix('/user')->group(function () {
-    Route::put('/edit', [UsersController::class, 'edit']);
+    Route::put('/edit/{id}', [UsersController::class, 'edit']);
     Route::post('/refresh', [UsersController::class, 'refresh']);
 });
 
