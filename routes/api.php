@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
@@ -25,6 +26,12 @@ Route::group(['prefix' => 'products'], function () {
 Route::group(['prefix'=>'user'], function() {
     Route::post('/register', [UsersController::class, 'register']);
     Route::post('/login', [UsersController::class, 'login']);
+});
+Route::middleware('auth:sanctum')->prefix('/cart')->group(function () {
+    Route::post('add', [CartController::class, 'addProductToCart']);
+    Route::get('display/{id}', [CartController::class, 'displayCartItems']);
+    Route::put('edit/{id}/product', [CartController::class, 'editCartItems'])->name('product')->where('q', '[A-Za-z0-9]+');
+    Route::delete('delete/{id}/product', [CartController::class, 'deleteCartItem'])->name('product')->where('q', '[0-9]+');
 });
 Route::middleware('auth:sanctum')->prefix('/user')->group(function () {
     Route::put('/edit', [UsersController::class, 'edit']);
