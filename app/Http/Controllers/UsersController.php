@@ -25,6 +25,7 @@ class UsersController extends Controller
             $user->save();
             return Response::json("User added to DB ", 201);
         }catch(QueryException $e){
+            // Checking if user already registered
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 return 'Email already signed';
@@ -60,27 +61,34 @@ class UsersController extends Controller
                 return Response::json("password is incorrect!", 400);
             } 
         }else {
-            return Response::json("email is not found!", 400);
+            return Response::json("email is not found!", 404);
         }
     }
     function edit(Request $request) {
-        $id = $request->id;
-        $user = User::find($id);
+        $userID = $request->id;
+        $user = User::find($userID);
+        // Sending fields in body
         $allowedFields = ['firstName', 'lastName', 'mobileNum', 'address1', 'address2', 'country', 'state', 'city', 'zipCode'];
-        if($user != null) {
-            foreach ($allowedFields as $field) {
-                if ($request->has($field)) {
-                    $user->$field = $request->$field;
+        // check if user have permission to edit
+        if (Auth::check() && Auth::user()->id == $userID) {
+            if($user) {
+                foreach ($allowedFields as $field) {
+                    if ($request->has($field)) {
+                        $user->$field = $request->$field;
+                    }
                 }
+                if($request->password) {
+                    $user->password = Hash::make($request->password);
+                }
+                $user->save();
+                return response()->json(['message' => 'User has been edited'], 202);
+            } else {
+                return response()->json(['message' => 'User not found'], 404);
             }
-            if($request->password) {
-                $user->password = Hash::make($request->password);
-            }
-            $user->save();
-            return response()->json(['message' => 'User has been edited'], 202);
         } else {
-            return response()->json(['message' => 'User not found'], 404);
+            return response()->json(['message' => 'You are not authorized to edit this profile'], 401);
         }
+        
     }
     function refresh(Request $request){
         $refreshToken = $request->refresh_token;
@@ -108,5 +116,20 @@ class UsersController extends Controller
             'refresh_token' => $refreshToken,
             'refresh_token_expiration' => $refreshTokenExpiration
         ], 200);
+    }
+    function logout(Request $request) {
+        //  Log out the user
+         try {
+            // Validate the user with sending userID
+            if (Auth::check() && Auth::user()->id == $request->id) {
+                // Logout the user
+                
+                return response()->json(['message' => 'User logged out successfully'], 200);
+            } else {
+                return response()->json(['message' => 'Invalid user'], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while logging out the user'], 500);
+        }
     }
 }
