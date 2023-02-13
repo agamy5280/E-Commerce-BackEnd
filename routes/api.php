@@ -29,6 +29,7 @@ Route::group(['prefix' => 'products'], function () {
 Route::group(['prefix'=>'user'], function() {
     Route::post('/register', [UsersController::class, 'register']);
     Route::post('/login', [UsersController::class, 'login']);
+    Route::get('verify/{verificationToken}', [UsersController::class, 'verifyEmail']);
 });
 Route::middleware('auth:sanctum')->prefix('/cart')->group(function () {
     Route::post('add/{id}', [CartController::class, 'addProductToCart']);
