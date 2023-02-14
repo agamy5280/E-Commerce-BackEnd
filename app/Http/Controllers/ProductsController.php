@@ -13,6 +13,14 @@ class ProductsController extends Controller
         $products = Products::all();
         return $products;
     }
+    function getRecentProducts() {
+        $products = Products::all()->where('category', 'smartphones');
+        return $products;
+    }
+    function getFeaturedProducts() {
+        $products = Products::all()->where('category', 'laptops');
+        return $products;
+    }
     function getProductByID(Request $request) {
         $id = $request->id;
         $product = Products::find($id);
@@ -62,6 +70,5 @@ class ProductsController extends Controller
         }else{
             return response()->json(['products'=>$products, 'sortCount' =>$sortCount], 200);
         }
-        
     }
 }

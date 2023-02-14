@@ -22,6 +22,8 @@ use App\Http\Controllers\WishlistController;
 Route::get('categories', [CategoriesController::class, 'getCategories']);
 
 Route::group(['prefix' => 'products'], function () {
+    Route::get('recent', [ProductsController::class, 'getRecentProducts']);
+    Route::get('featured', [ProductsController::class, 'getFeaturedProducts']);
     Route::get('search', [ProductsController::class, 'getProductsBySearch'])->name('search')->where('q', '[A-Za-z]+');    
     Route::get('', [ProductsController::class, 'getAllProducts']);
     Route::get('{id}', [ProductsController::class, 'getProductByID']);

@@ -14,11 +14,12 @@ class CartController extends Controller
     function addProductToCart(Request $request) {
         try {
             $userID = $request->id;
+            $productID = $request->productID;
             if (Auth::check() && Auth::user()->id == $userID) {
                 // Query params productID for selecting specific product to add
-                if (User::find($userID) && Products::find($request->productID)) {
+                if (User::find($userID) && Products::find($productID)) {
                     $cartItem = new Cart;
-                    $existingCartProduct = Cart::all()->where('user_id', $userID)->where('product_id', $request->productID)->first();
+                    $existingCartProduct = Cart::all()->where('user_id', $userID)->where('product_id', $productID)->first();
 
                     // Checking if product already in cart
                     if($existingCartProduct) {
@@ -26,7 +27,9 @@ class CartController extends Controller
                         $existingCartProduct->save();
                         return response()->json(['message' => 'Cart item duplicated, Quantity++'], 201);
                     } else {
-                        $cartItem->fill($request->post());
+                        $cartItem->user_id = $userID;
+                        $cartItem->product_id = $productID;
+                        $cartItem->quantity = 1;
                         $cartItem->save();
                         return response()->json(['message' => 'Cart item added successfully'], 201);
                     }
@@ -37,7 +40,7 @@ class CartController extends Controller
                  return response()->json(['message' => 'You are not authorized to add product to this cart'], 403);
             }
         } catch (\Exception $e) {
-            return response()->json(['message' => 'An error occurred while adding the cart item'], 500);
+            return response()->json(['message' => $e], 500);
         }        
     }
     function displayCartItems(Request $request) {
@@ -54,6 +57,7 @@ class CartController extends Controller
                     }
                     return response()->json([
                         'products' => $products,
+                        'count' => count($products),
                         'message' => 'Cart has been displayed'
                     ], 200);
                 } else {

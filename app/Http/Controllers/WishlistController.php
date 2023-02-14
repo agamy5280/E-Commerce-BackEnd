@@ -21,7 +21,7 @@ class WishlistController extends Controller
                     if($existingWishlistProduct) {
                         return response()->json(['message' => 'Wishlist item duplicated'], 201);
                     } else {
-                        $wishlist->fill($request->post());
+                        $wishlist->product_id = $request->productID;
                         $wishlist->user_id = $userID;
                         $wishlist->save();
                         return response()->json(['message' => 'Wishlist item added successfully'], 201);
@@ -49,6 +49,7 @@ class WishlistController extends Controller
                     }
                     return response()->json([
                         'products' => $products,
+                        'count' => count($products),
                         'message' => 'Wishlist has been displayed'
                     ], 200);
                 } else {
