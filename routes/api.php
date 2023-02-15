@@ -47,6 +47,7 @@ Route::middleware('auth:sanctum')->prefix('/wishlist')->group(function () {
 Route::middleware('auth:sanctum')->prefix('/orders')->group(function () {
     Route::post('add/{id}', [OrdersController::class, 'addOrder']);
     Route::get('display/{id}', [OrdersController::class, 'displayOrdersByID']);
+    Route::get('displayOrdersProducts/{id}', [OrdersController::class, 'displayOrdersProductsByID']);
 });
 Route::middleware('auth:sanctum')->prefix('/user')->group(function () {
     Route::patch('/edit/{id}', [UsersController::class, 'edit']);

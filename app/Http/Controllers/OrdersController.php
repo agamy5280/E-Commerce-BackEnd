@@ -79,8 +79,7 @@ class OrdersController extends Controller
             if(User::find($request->id)) {
                 $userID = $request->id;
                 if (Auth::check() && Auth::user()->id == $userID) {
-                    $userID = $request->id;
-                    $orders = Orders::where('user_id', $userID)->with('orderDetails')->first();
+                    $orders = Orders::where('user_id', $userID)->with('orderDetails')->get();
                     if ($orders) {
                         return response()->json([$orders, 'message' => 'Displaying Orders successfully'], 200);
                     } else {
@@ -95,6 +94,32 @@ class OrdersController extends Controller
             }
         } catch (\Exception $e) {
             return response()->json(['message' => 'An error occurred while displaying the orders'], 500);
+        }
+    }
+    function displayOrdersProductsByID (Request $request) {
+        try {
+            if(User::find($request->id)) {
+                $userID = $request->id;
+                if (Auth::check() && Auth::user()->id == $userID) {
+                    $orderID = $request->orderID;
+                    $orderDetails = OrderDetails::join('products', 'products.id', '=', 'order_details.product_id')
+                            ->select('products.title as name', 'order_details.quantity')
+                            ->where('order_details.order_id', $orderID)
+                            ->get();
+                    if ($orderDetails) {
+                        return response()->json([$orderDetails, 'message' => 'Displaying Orders Products successfully'], 200);
+                    } else {
+                    return response()->json(['message' => 'No orders found'], 404);
+                    }
+                } else {
+                    return response()->json(['message' => 'You are not authorized to view this order'], 401);
+                }
+                
+            } else {
+                return response()->json(['message' => 'User not found'], 404);  
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while displaying the orders Products'], 500);
         }
     }
     function displayAllOrders (Request $request) {
