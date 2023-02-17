@@ -1,0 +1,46 @@
+.body{
+    display: grid;
+    justify-items: center;
+}
+.pagination {
+    text-align: center;
+}
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #56D9D9;
+    border-radius: 8px;
+    font-size: 20px;
+  }
+
+.my-pagination ::ng-deep  .pagination-next a::after, .my-pagination ::ng-deep .pagination-next.disabled::after{
+    content: '>';
+    font-size: 24px;
+}
+
+.my-pagination ::ng-deep .pagination-previous a::before, .my-pagination ::ng-deep .pagination-previous.disabled::before {
+    content: '<';
+    font-size: 24px;
+}
+
+.my-pagination ::ng-deep  .pagination-next a:hover, .my-pagination ::ng-deep .pagination-next.disabled:hover{
+    background-color: #FFFFFF;
+}
+.my-pagination ::ng-deep .pagination-previous a:hover, .my-pagination ::ng-deep .pagination-previous.disabled:hover {
+    content: '<';
+    font-size: 24px;
+}
+a[id='Best Rating']:hover, a[id='Stock: Low to High']:hover, a[id='Stock: High to Low']:hover, a[id='Price: Low to High']:hover, a[id='Price: High to Low']:hover{
+    background-color: #03C988;
+    color: #FFF;
+    cursor: pointer;
+}
+#Clear:hover{
+    cursor: pointer;
+    color: #FFF;
+    background-color: #F55050;
+}
+#btn:active{
+    background-color: green;
+}
+.h6{
+    cursor: pointer;
+}

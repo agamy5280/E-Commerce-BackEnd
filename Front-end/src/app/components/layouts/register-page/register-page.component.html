@@ -1,0 +1,52 @@
+<div class="body">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!-- <i class="fa-solid fa-user"></i> -->
+        <i class="fas fa-user"></i>
+      </div>
+
+      <!-- Register Form -->
+      <form id="myForm" [formGroup]="registerForm" id="registerForm" (ngSubmit)="register()">
+        <input type="text" id="firstName" placeholder="First Name" formControlName="firstName">
+        <input type="text" id="lastName" placeholder="Last Name" formControlName="lastName">
+        <input type="text" id="email" placeholder="adam@gmail.com" formControlName="email">
+        <input type="password" id="password" placeholder="Password" formControlName="password">
+        <input type="submit" value="Sign Up" id="submit" [hidden]="!registerForm.valid">
+      </form>
+      <ng-container *ngIf="registerForm.controls['firstName'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['firstName']?.errors?.['required']">Please type your First
+          Name!</p>
+      </ng-container>
+      <ng-container *ngIf="registerForm.controls['firstName'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['firstName']?.errors?.['pattern']">Name must not contains numbers!</p>
+      </ng-container>
+      <ng-container *ngIf="registerForm.controls['lastName'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['lastName']?.errors?.['required']">Please type your Last
+          Name!</p>
+      </ng-container>
+      <ng-container *ngIf="registerForm.controls['lastName'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['lastName']?.errors?.['pattern']">Name must not contains numbers!</p>
+      </ng-container>
+      <ng-container *ngIf="registerForm.controls['password'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['password']?.errors?.['required']">Please type your
+          password!</p>
+      </ng-container>
+      <ng-container *ngIf="registerForm.controls['password'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['password']?.errors?.['minlength']">Password Must be at least 8 characters!</p>
+      </ng-container>
+      <ng-container *ngIf="registerForm.controls['email'].touched">
+        <p class="text-danger" *ngIf="registerForm.controls['email']?.errors?.['required']">Please type your email!</p>
+      </ng-container>
+      <ng-container *ngIf="errorMsg">
+        <p class="text-danger">{{errorMsg}}!</p>
+      </ng-container>
+      <div id="formFooter">
+        <a class="underlineHover" href="login">Already have an account?, Login Now!</a>
+      </div>
+    </div>
+  </div>
+</div>

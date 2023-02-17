@@ -1,0 +1,28 @@
+
+.container { 
+    padding: 16px;
+    .search{
+        position: relative;
+        #search-bar {
+            height: 32px;
+            width: 320px;
+            border-radius: 8px;
+            text-indent: 18px;
+            ::placeholder {
+                color: #667085;
+                font-size: 14px;
+              }
+          }
+          #search-bar:focus{
+            box-shadow: 5px 5px #FFD333;
+          }
+        i{
+            color: #FFD333;
+            position: absolute;
+            left: 10px;
+            bottom: 6.5px;
+        }
+    }
+   
+} 
+  

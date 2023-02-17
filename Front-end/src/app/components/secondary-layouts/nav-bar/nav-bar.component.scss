@@ -1,0 +1,29 @@
+.btn {
+    color: #FFD333;
+}
+.dropdown-item:hover {
+    color: #FFF;
+    background-color: #FFD333;
+    cursor: pointer;
+}
+#icon {
+    margin-right: 5px;
+}
+#nav-item:hover {
+    cursor: pointer;
+    background-color: #ffd333;
+}
+#dropdown-icons {
+    margin-right: 8px;
+}
+@media only screen and (max-width: 480px) {
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }

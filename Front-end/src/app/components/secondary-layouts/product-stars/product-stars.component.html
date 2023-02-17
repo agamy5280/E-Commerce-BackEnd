@@ -1,0 +1,11 @@
+<div class="d-flex align-items-center justify-content-center mb-1">
+  <ng-container *ngFor="let _ of [].constructor(productRatingFloor)">
+    <small class="fa fa-star text-primary mr-1"></small>
+  </ng-container>
+  <ng-container *ngIf="rating >= 4.5">
+    <small class="fa fa-star-half-alt text-primary mr-1"></small>
+  </ng-container>
+  <ng-container *ngIf="rating < 4.5">
+    <small class="far fa-star text-primary mr-1"></small>
+  </ng-container>
+</div>

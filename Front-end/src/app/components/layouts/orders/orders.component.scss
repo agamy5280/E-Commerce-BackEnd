@@ -1,0 +1,26 @@
+.border-btn {
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    color: #057ed8;
+    line-height: 1;
+    display: inline-block;
+    border: #057ed8 solid 1px;
+    background-color: transparent;
+    line-height: 38px;
+    padding: 0 1em;
+}
+.border-btn:hover, .border-btn:active, .border-btn.active {
+    color: #fff;
+    background-color: #057ed8;
+    cursor: pointer;
+  }
+  .border-btn.inactive, .border-btn.inactive:hover, .border-btn.inactive:active {
+    color: #b3b3b3;
+    border-color: #b3b3b3;
+    background-color: transparent;
+    text-align: center;
+  }

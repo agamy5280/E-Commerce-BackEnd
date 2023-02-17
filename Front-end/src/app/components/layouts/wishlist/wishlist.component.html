@@ -1,0 +1,51 @@
+<!-- Navbar Start -->
+<app-nav-bar></app-nav-bar>
+<!-- Navbar End -->
+
+<!-- WishList Start -->
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="col-lg-12 table-responsive mb-5">
+      <table class="table table-light table-borderless table-hover text-center mb-0">
+        <thead class="thead-dark">
+          <tr>
+            <th>Products</th>
+            <th>Price</th>
+            <th>Buy It Now</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody class="align-middle" id="products">
+          <ng-container *ngFor="let prod of products">
+            <tr>
+              <td class="align-middle">
+                <img src="{{ prod['thumbnail'] }}" alt="" style="width: 50px; border-radius: 2px;" />
+                {{ prod['title'] }}
+              </td>
+              <td class="align-middle"><del
+                  style="margin-right: 5px;">{{ prod['price'] | currency}}</del>{{ wishListService.getPriceAfterDiscount(prod['price'], prod['discountPercentage']) | currency }}
+              </td>
+              <td><button id="btn" class="btn btn-primary px-3" (click)="addProductToCart(prod['id'])"><i
+                    class="fa fa-shopping-cart mr-1"></i> Add To
+                  Cart</button></td>
+              <td class="align-middle">
+                <button class="btn btn-sm btn-danger" type="button" (click)="wishListService.removeItem(prod['id'])">
+                  <i class="fa fa-times"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- WishList End -->
+
+<!-- Footer Start -->
+<app-footer></app-footer>
+<!-- Footer End -->
+
+<!-- Back to Top Start-->
+<app-back-to-top></app-back-to-top>
+<!-- Back to Top End-->

@@ -1,0 +1,110 @@
+<!-- Navbar Start -->
+<app-nav-bar></app-nav-bar>
+<!-- Navbar End -->
+
+<!-- Checkout Start -->
+<form id="editForm" [formGroup]="editProfileForm" id="registerForm" (ngSubmit)="editProfle()">
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+          <div class="col-lg-8">
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Account
+                Profile</span></h5>
+            <div class="bg-light p-30 mb-5">
+              <div class="row">
+                <div class="col-md-3 form-group">
+                  <label>First Name</label>
+                  <input class="form-control" type="text" placeholder="John" value="{{ userInformation['firstName'] }}" formControlName="firstName">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Last Name</label>
+                  <input class="form-control" type="text" placeholder="Doe" value="{{ userInformation['lastName'] }}" formControlName="lastName">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Password</label>
+                  <input class="form-control" type="password" placeholder="New Password" formControlName="password">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Mobile No</label>
+                  <input class="form-control" type="text" placeholder="+123 456 789" value="{{ userInformation['mobileNum'] }}" formControlName="mobileNum">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Address Line 1</label>
+                  <input class="form-control" type="text" placeholder="123 Street" value="{{ userInformation['address1'] }}" formControlName="address1">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Address Line 2</label>
+                  <input class="form-control" type="text" placeholder="22572 Toreador Drive" value="{{ userInformation['address2'] }}" formControlName="address2">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>Country</label>
+                  <select class="custom-select" value="{{ userInformation['country'] }}" formControlName="country">
+                    <option>Egypt</option>
+                    <option>USA</option>
+                    <option>Algeria</option>
+                  </select>
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>City</label>
+                  <input class="form-control" type="text" placeholder="New York" value="{{ userInformation['city'] }}" formControlName="city">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>State</label>
+                  <input class="form-control" type="text" placeholder="New York" value="{{ userInformation['state'] }}" formControlName="state">
+                </div>
+                <div class="col-md-3 form-group">
+                  <label>ZIP Code</label>
+                  <input class="form-control" type="text" placeholder="123" value="{{ userInformation['zipCode'] }}" formControlName="zipCode">
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="editProfileForm.controls['firstName'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['firstName']?.errors?.['pattern']">Name must not contains numbers!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['lastName'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['lastName']?.errors?.['pattern']">Name must not contains numbers!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['password'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['password']?.errors?.['minlength']">Password Must be at least 8 characters!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['mobileNum'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['mobileNum']?.errors?.['minlength']">Mobile number Must be at least 10 numbers!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['mobileNum'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['mobileNum']?.errors?.['maxlength']">Mobile number Must be at most 20 numbers!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['mobileNum'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['mobileNum']?.errors?.['pattern']">Mobile number Must not contains characters!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['address1'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['address1']?.errors?.['minlength']">Please type correct address in address 1!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['address2'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['address2']?.errors?.['minlength']">Please type correct address in address 2!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['city'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['city']?.errors?.['pattern']">City Name must not contains numbers!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['state'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['state']?.errors?.['pattern']">State Name must not contains numbers!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['zipCode'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['zipCode']?.errors?.['pattern']">Zip Code number Must not contains characters!</p>
+            </ng-container>
+            <ng-container *ngIf="editProfileForm.controls['zipCode'].touched">
+                <p class="text-danger" *ngIf="editProfileForm.controls['zipCode']?.errors?.['maxlength']">Zip Code number Must be at most 8 numbers!</p>
+            </ng-container>
+            <input type="submit" class="btn btn-block btn-primary font-weight-bold py-3" value="Edit Profle" [disabled]="!editProfileForm.valid || !submitStatus">
+          </div>
+        </div>
+      </div>
+</form>
+
+
+<!-- Footer Start -->
+<app-footer></app-footer>
+<!-- Footer End -->
+
+
+<!-- Back to Top Start-->
+<app-back-to-top></app-back-to-top>
+<!-- Back to Top End-->

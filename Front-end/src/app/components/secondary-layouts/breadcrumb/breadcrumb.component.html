@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="col-12">
+      <nav class="breadcrumb bg-light mb-30">
+        <a class="breadcrumb-item text-dark" routerLink="/shop">{{ currentRoute | titlecase }}</a>
+        <ng-container *ngIf="currentKey">
+          <span class="breadcrumb-item active">{{ currentKey | titlecase  }}</span>
+        </ng-container>
+        <ng-container *ngIf="currentParams">
+          <span class="breadcrumb-item active">{{ currentParams | titlecase  }}</span>
+        </ng-container>
+      </nav>
+    </div>
+  </div>
+</div>

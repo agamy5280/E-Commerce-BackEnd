@@ -1,0 +1,35 @@
+<div class="body">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <i class="fas fa-user"></i>
+      </div>
+
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" id="myForm" (ngSubmit)="login()">
+        <input type="text" id="username" placeholder="Email" formControlName="email">
+
+        <input type="password" id="password" placeholder="Password" formControlName="password">
+        <input type="submit" value="Log In" [hidden]="!loginForm.valid">
+      </form>
+      <ng-container *ngIf="loginForm.controls['email'].touched">
+        <p class="text-danger" *ngIf="loginForm.controls['email']?.errors?.['required']">Please type your username!
+        </p>
+      </ng-container>
+      <ng-container *ngIf="loginForm.controls['password'].touched">
+        <p class="text-danger" *ngIf="loginForm.controls['password']?.errors?.['required']">Please type your password!
+        </p>
+      </ng-container>
+      <ng-container *ngIf="errorMsg">
+        <p class="text-danger">{{errorMsg}}!</p>
+      </ng-container>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="register">Don't have an account?, Register Now!</a>
+      </div>
+    </div>
+  </div>
+</div>
