@@ -1,66 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ECommerce: Simple Back-End application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a simple E-Commerce Back-End project using Laravel. Users have the ability to register new account and activation mail is sent to user's email for verification (Please register with a valid email). Users have the ability to login, edit their profile and view their previous orders. Inaddition, Users can add, Delete to/from the cart and wishlist. The application loads products, categories from DB and displays them. When placing new order, a confirmation mail is sent to the user's email. The application is continuation of [Front-End](https://github.com/agamy5280/E-commerce-Website), but due to hosting limitation, Application will only run locally.
 
-## About Laravel
+# Project Intent
+The aim of this project is to test my ability to build backend laravel applications using correct approaches. My goals are learning how to write clean code, design architecture, authentication, giving permissions and to be more knowledgeable about Laravel.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Features
+| Feature | Implemented? | Description
+| :--- | :---: | :---: |
+| List Products | ✔ | User have the ability to browse all products.
+| List Categories | ✔ | User have the ability to view all categories.
+| Search Products | ✔ | Searching for a specific product.
+| Filter Products By Category | ✔ | Products can be filterd by selecting a specific category.
+| Filter Products By Stock | ✔ | Products can be sorted from low to high or high to low according to their stock quantity.
+| Filter Products By Price | ✔ | Products can be sorted from low to high or high to low according to their price.
+| Filter Products By Best Rating | ✔ | Products can be sorted from high to low according to their rating.
+| Filter Products By Brand | ✔ | Products can be filterd by selecting a specific Brand.
+| Register | ✔ | User have the ability to register.
+| Account Verification | ✔ | A verification email is sent to user's email upon registration using SMTP.
+| Sign In | ✔ | User have the ability to sign in with existing username and password.
+| Access Token | ✔ | Access Token is generated when user log in.
+| Refresh Token | ✔ | Refresh Token is generated and updated when user log in.
+| Access Token Refresh | ✔ | Access Token is refreshed when expired.
+| Logout | ✔ | User have the ability to Logout.
+| Edit Profile | ✔ | Users can edit their profile informations.
+| Display Previous Orders | ✔ | Displaying previous user's orders.
+| Add Product to Cart | ✔ | User can add any product to cart.
+| Inc/Dec Quantity of Product from Cart | ✔ | User can increase or decrease quantity of a specific product in cart.
+| Remove Product from Cart | ✔ | User can remove any product from cart.
+| Add Product to Wishlist | ✔ | User can add any product to wishlist.
+| Remove Product from Wishlist | ✔ | User can remove any product from wishlist.
+| Place Order | ✔ | Users can place orders.
+| Confirmation Order Email | ✔ | Confirmation email is sent to user's email when placing new order using SMTP.
+| Authentication and Permissions | ✔ | Only authenticated user can view their order, cart, wishlist giving he has the permission to make do so.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Live Demonstration
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Verification Mail:
 
-## Learning Laravel
+![Verification mail](https://user-images.githubusercontent.com/79969562/219662672-f0531f19-b977-45fc-8262-2b8fa5e7a2ae.JPG)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Confirmation Order Email:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![order confirmation](https://user-images.githubusercontent.com/79969562/219662819-ec9a6cf0-f8c9-425a-878c-47ff2a916198.JPG)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+For more live Demonstration please Check this [Front-End](https://github.com/agamy5280/E-commerce-Website).
 
-## Laravel Sponsors
+# Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+* [Laravel](https://laravel.com/)
 
-### Premium Partners
+# Front-End
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+The modified [Front-End](https://github.com/agamy5280/E-commerce-Website) is added to this repo. Disclaimer: Work in progress.
 
-## Contributing
+# Future Modification
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Hosting project files.
+2. Complete the integration between Front and Back ends.
 
-## Code of Conduct
+# Notes
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Please feel free to comment your thoughts, modifications, issues as this will help me greatly achiving my main goal of improving my coding skills and my knowledge of Laravel.
